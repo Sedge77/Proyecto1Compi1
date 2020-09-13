@@ -3,6 +3,9 @@ from Token import *
 global listaTok ##liSTA GLOBAL DE TOKENS
 listaTok = list()
 
+mayusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+minusculas = 'abcdefghijklmnopqrstuvwxyz'
+numeros='123456789'
 
 
 
@@ -21,11 +24,9 @@ def analizarcss(Entrada):
     contador = 0
 
     ##mitoken = Token(Tipo,Caracter)
-    while contador <= range(len(EntradaEvv):
-        
-        pass
-    for i in range(len(EntradaEvv)): ##FOr para recorrer una cadena
-        C=EntradaEvv[i]
+    while contador <= len(EntradaEvv)-1:
+
+        C=EntradaEvv[contador]
            
         ##print(i) 
         if estado=='0':
@@ -44,6 +45,14 @@ def analizarcss(Entrada):
                 estado='0' 
                 Caracter=''
                 listaTok.append(mitoken)
+
+            elif C=='-':
+                estado='5' ##Aqui salta al siguiente caracter
+                Recorrido = Recorrido + "Estado 0---->"
+                
+            elif C in mayusculas or C in minusculas:
+                estado='5' 
+                Recorrido = Recorrido + "Estado 0---->"    
                 
                 
             elif C=='}': ##Cierra Corchete
@@ -74,8 +83,7 @@ def analizarcss(Entrada):
             if C=='/':
                 estado='4' ##Aqui salta al siguiente caracter
                 Recorrido = Recorrido + "Estado 3---->"
-                
-                i=i-1
+                contador=contador-1 
             elif C!='/':
                 estado='2' 
                 Recorrido = Recorrido + "Estado 3---->"
@@ -100,8 +108,31 @@ def analizarcss(Entrada):
             
             estado='0'
             
-        elif estado=='5':
-            pass 
+        elif estado=='5':  ##ESTADO DE ID
+            
+            if C=='-':
+                estado='5' ##Aqui salta al siguiente caracter
+                Caracter = Caracter+C
+                Recorrido = Recorrido + "Estado 5---->"
+                 
+            elif C in mayusculas or C in minusculas or C in numeros:
+                estado='5' 
+                Caracter = Caracter+C
+                Recorrido = Recorrido + "Estado 5---->"
+            else:
+                Tipo='ID'
+                mitoken = Token(Tipo,Caracter) ##Creando objeto comentario
+                mitoken.setcaracter(Caracter)
+                mitoken.setTipo(Tipo)
+                listaTok.append(mitoken)
+                print("Se ha guardado: "+Caracter)
+                print(Recorrido+Caracter+ " ACEPTADO")   
+                contador=contador-1  
+                estado='0' 
+
+                Caracter=''
+                Recorrido=''
+                
         elif estado=='6':
             pass 
         elif estado=='7':
@@ -123,5 +154,7 @@ def analizarcss(Entrada):
         elif estado=='15':
             pass 
         else:
-            print(i+"No es parte del lenguaje")
+            print(C+"No es parte del lenguaje")
+
+        contador=contador+1    
              

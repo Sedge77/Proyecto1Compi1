@@ -19,11 +19,12 @@ if opc == '1':
 elif opc=='2':
 
     
-    text = "/*hola todo esto es un comentario*/            /*Este es un segundo comentario*/ {C"
+    text = "/*hola todo esto es un c******************omentario*//*Este es un segundo comentario*/ {Csdsdsd"
             
             
     analizarcss(text)
     print("Se termino el analisis")
+    print('')
     for i in listaTok:
         i.miestado()
      
