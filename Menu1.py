@@ -19,7 +19,7 @@ if opc == '1':
 elif opc=='2':
 
     
-    text = "/*hola todo esto es un comentario*//*Este es un segundo comentario*/"
+    text = "/*hola todo esto es un comentario*/            /*Este es un segundo comentario*/ {C"
             
             
     analizarcss(text)

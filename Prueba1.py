@@ -6,6 +6,6 @@ largo = len(Cadena)
 
 numero='0'
 
-for numero in range(largo):
-    print(numero)
-    numero==numero-1
+for i in Cadena:
+    print(i)
+    i.rstrip(' ')
